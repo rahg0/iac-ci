@@ -151,3 +151,12 @@ resource "aws_s3_bucket" "financials-rk" {
     git_file             = "terraform/aws/s3.tf"
   }
 }
+
+
+resource "aws_s3_bucket" "financials-tk" {
+  bucket        = "${local.resource_prefix.value}-financials-tk"
+  tags = {
+    git_commit           = "d68d2897add9bc2203a5ed0632a5cdd8ff8cefb0"
+    git_file             = "terraform/aws/s3.tf"
+  }
+}
