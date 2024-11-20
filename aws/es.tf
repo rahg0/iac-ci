@@ -42,3 +42,11 @@ resource "aws_elasticsearch_domain_policy" "monitoring-framework-policy" {
   domain_name     = aws_elasticsearch_domain.monitoring-framework.domain_name
   access_policies = data.aws_iam_policy_document.policy.json
 }
+
+resource "aws_s3_bucket" "financials-rk" {
+  bucket        = "${local.resource_prefix.value}-financials-rk"
+  tags = {
+    git_commit           = "d68d2897add9bc2203a5ed0632a5cdd8ff8cefb0"
+    git_file             = "terraform/aws/s3.tf"
+  }
+}
