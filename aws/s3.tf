@@ -3,6 +3,8 @@ resource "aws_s3_bucket" "data" {
   # bucket is not encrypted
   # bucket does not have access logs
   # bucket does not have versioning
+  # test input
+  
   bucket        = "${local.resource_prefix.value}-data"
   force_destroy = true
   tags = merge({
@@ -110,6 +112,7 @@ resource "aws_s3_bucket" "data_science" {
   }
 }
 
+
 resource "aws_s3_bucket" "logs" {
   bucket = "${local.resource_prefix.value}-logs"
   acl    = "log-delivery-write"
@@ -138,4 +141,9 @@ resource "aws_s3_bucket" "logs" {
     git_repo             = "terragoat"
     yor_trace            = "01946fe9-aae2-4c99-a975-e9b0d3a4696c"
   })
+}
+
+
+resource "aws_s3_bucket" "financialss" {
+  bucket        = "${local.resource_prefix.value}-financialss"
 }
