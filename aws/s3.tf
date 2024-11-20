@@ -144,6 +144,6 @@ resource "aws_s3_bucket" "logs" {
 }
 
 
-resource "aws_s3_bucket" "financialss" {
-  bucket        = "${local.resource_prefix.value}-financialss"
+resource "aws_s3_bucket" "financialsr" {
+  bucket        = "${local.resource_prefix.value}-financialsr"
 }
