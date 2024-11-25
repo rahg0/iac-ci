@@ -1,0 +1,11 @@
+{
+  "id": "bbf6b3df-4b65-4f87-82cc-da9f30f8c055",
+  "queryName": "Wolters Custom Control on Azure KeyVault",
+  "severity": "HIGH",
+  "category": "Build process",
+  "descriptionText": "Insecure network configuration for Key Vault",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault.html",
+  "platform": "Terraform",
+  "descriptionID": "9f51f6b1",
+  "cloudProvider": "azure"
+}
