@@ -41,8 +41,7 @@ jobs:
         uses: orcasecurity/shiftleft-iac-action@v1
         id: orca_scan
         with:
-          api_token: ${{ secrets.ORCA_SECURITY_API_TOKEN_REPO }}
+          api_token: ${{ secrets.ORCA_SECURITY_API_TOKEN }}
           project_key: ${{ env.PROJECT_KEY }}
           path: "./"
           show_annotations: true
-    
