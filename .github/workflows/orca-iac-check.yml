@@ -45,3 +45,4 @@ jobs:
           project_key: ${{ env.PROJECT_KEY }}
           path: "./"
           show_annotations: true
+          custom_controls: "./.github/workflows/opa_policies/custom_queries"
