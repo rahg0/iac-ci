@@ -1,5 +1,5 @@
 #tfsec:ignore:azure-keyvault-specify-network-acl
-resource "azurerm_key_vault" "key_vault" {
+resource "azurerm_key_vault" "key_vault5" {
   name                            = var.name
   resource_group_name             = var.resource_group_name
   location                        = var.location
@@ -37,7 +37,7 @@ data "azurerm_client_config" "current" {}
 
 resource "azurerm_key_vault_access_policy" "main" {
   count        = length(var.access_policies)
-  key_vault_id = azurerm_key_vault.key_vault.id
+  key_vault_id = azurerm_key_vault.key_vault5.id
 
   tenant_id = data.azurerm_client_config.current.tenant_id
   object_id = var.access_policies[count.index].object_id
@@ -63,7 +63,7 @@ resource "azurerm_private_endpoint" "private_endpoint" {
   private_service_connection {
     name                           = "${var.name}-pe-connection"
     is_manual_connection           = false
-    private_connection_resource_id = azurerm_key_vault.key_vault.id
+    private_connection_resource_id = azurerm_key_vault.key_vault5.id
     subresource_names              = var.subresource_names
   }
   depends_on = [
@@ -73,19 +73,19 @@ resource "azurerm_private_endpoint" "private_endpoint" {
 }
 
 output "key_vault_id" {
-  value       = azurerm_key_vault.key_vault.id
+  value       = azurerm_key_vault.key_vault5.id
   description = "Resource Id for the Key Vault"
 }
 
 output "key_vault_name" {
-  value       = azurerm_key_vault.key_vault.name
+  value       = azurerm_key_vault.key_vault5.name
   description = "Name of the Key Vault"
 }
 module "diag" {
   count                          = var.enable_logs || var.enable_metrics == true ? 1 : 0
   source                         = "../DiagnosticSettings"
   name                           = "${var.name}-diag"
-  resource_id                    = azurerm_key_vault.key_vault.id
+  resource_id                    = azurerm_key_vault.key_vault5.id
   logs_destinations_ids          = var.logs_destinations_ids
   eventhub_name                  = var.eventhub_name
   log_categories                 = var.enable_logs == true ? var.log_categories : []
