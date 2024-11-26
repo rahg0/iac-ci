@@ -1,4 +1,5 @@
-resource "azurerm_key_vault" "azkeyvault" {
+#second tf file for az keyvault
+resource "azurerm_key_vault" "key_vault" {
   name                            = var.name
   resource_group_name             = var.resource_group_name
   location                        = var.location
@@ -36,7 +37,7 @@ data "azurerm_client_config" "current" {}
 
 resource "azurerm_key_vault_access_policy" "main" {
   count        = length(var.access_policies)
-  key_vault_id = azurerm_key_vault.azkeyvault.id
+  key_vault_id = azurerm_key_vault.key_vault.id
 
   tenant_id = data.azurerm_client_config.current.tenant_id
   object_id = var.access_policies[count.index].object_id
@@ -62,7 +63,7 @@ resource "azurerm_private_endpoint" "private_endpoint" {
   private_service_connection {
     name                           = "${var.name}-pe-connection"
     is_manual_connection           = false
-    private_connection_resource_id = azurerm_key_vault.azkeyvault.id
+    private_connection_resource_id = azurerm_key_vault.key_vault.id
     subresource_names              = var.subresource_names
   }
   depends_on = [
@@ -72,19 +73,19 @@ resource "azurerm_private_endpoint" "private_endpoint" {
 }
 
 output "key_vault_id" {
-  value       = azurerm_key_vault.azkeyvault.id
+  value       = azurerm_key_vault.key_vault.id
   description = "Resource Id for the Key Vault"
 }
 
 output "key_vault_name" {
-  value       = azurerm_key_vault.azkeyvault.name
+  value       = azurerm_key_vault.key_vault.name
   description = "Name of the Key Vault"
 }
 module "diag" {
   count                          = var.enable_logs || var.enable_metrics == true ? 1 : 0
   source                         = "../DiagnosticSettings"
   name                           = "${var.name}-diag"
-  resource_id                    = azurerm_key_vault.azkeyvault.id
+  resource_id                    = azurerm_key_vault.key_vault.id
   logs_destinations_ids          = var.logs_destinations_ids
   eventhub_name                  = var.eventhub_name
   log_categories                 = var.enable_logs == true ? var.log_categories : []
