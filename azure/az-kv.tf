@@ -1,5 +1,5 @@
 #tfsec:ignore:azure-keyvault-specify-network-acl
-resource "azurerm_key_vault" "key_vault" {
+resource "azurerm_key_vault" "key_vault007" {
   name                            = var.name
   resource_group_name             = var.resource_group_name
   location                        = var.location
