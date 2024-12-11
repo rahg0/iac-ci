@@ -44,13 +44,15 @@ jobs:
         run: |
             git config --global --add safe.directory "$PWD"
             git rev-parse --abbrev-ref HEAD
-            git -c core.quotepath=false diff -z --name-only ${{ github.base_ref }}...${{ github.head_ref }} --diff-filter=ACM
-      - name: Run Orca IaC Scan
-        uses: orcasecurity/shiftleft-iac-action@v1
-        id: orca_scan
-        with:
-          api_token: ${{ secrets.ORCA_SECURITY_API_TOKEN }}
-          project_key: ${{ env.PROJECT_KEY }}
-          path: "./"
-          show_annotations: true
+            # git -c core.quotepath=false diff -z --name-only ${{ github.base_ref }}...${{ github.head_ref }} --diff-filter=ACM
+            curl -sfL ‘https://raw.githubusercontent.com/orcasecurity/orca-cli/main/install.sh’ | bash -s
+            orca-cli -p ${{ env.PROJECT_KEY }} -k ${{ secrets.ORCA_SECURITY_API_TOKEN }} iac scan --path ./
+      # - name: Run Orca IaC Scan
+      #   uses: orcasecurity/shiftleft-iac-action@v1
+      #   id: orca_scan
+      #   with:
+      #     api_token: ${{ secrets.ORCA_SECURITY_API_TOKEN }}
+      #     project_key: ${{ env.PROJECT_KEY }}
+      #     path: "./"
+      #     show_annotations: true
           custom_controls: "./.github/workflows/opa_policies/custom_queries"
