@@ -44,7 +44,7 @@ jobs:
         run: |
             git config --global --add safe.directory "$PWD"
             git rev-parse --abbrev-ref HEAD
-            git -c core.quotepath=false diff -z --name-only origin/${{ github.base_ref }}...origin/${{ github.head_ref }} --diff-filter=ACM
+            git -c core.quotepath=false diff -z --name-only ${{ github.base_ref }}...${{ github.head_ref }} --diff-filter=ACM
       - name: Run Orca IaC Scan
         uses: orcasecurity/shiftleft-iac-action@v1
         id: orca_scan
