@@ -36,7 +36,10 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.ref }}
+      
       - name: Run Orca IaC Scan
         uses: orcasecurity/shiftleft-iac-action@v1
         id: orca_scan
