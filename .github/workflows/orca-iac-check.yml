@@ -40,7 +40,11 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.ref }}
         
-
+      - name: add git permissions
+        run: |
+            git config --global --add safe.directory "$PWD"
+            git rev-parse --abbrev-ref HEAD
+            git -c core.quotepath=false diff -z --name-only origin/${{ github.base_ref }}...origin/${{ github.head_ref }} --diff-filter=ACM
       - name: Run Orca IaC Scan
         uses: orcasecurity/shiftleft-iac-action@v1
         id: orca_scan
