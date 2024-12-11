@@ -42,7 +42,7 @@ jobs:
         
       - name: add git permissions
         run: |
-            curl -sfL ‘https://raw.githubusercontent.com/orcasecurity/orca-cli/main/install.sh’ | bash -s
+            curl -sfL 'https://raw.githubusercontent.com/orcasecurity/orca-cli/main/install.sh' | bash -s
             orca-cli -h
             orca-cli -p ${{ env.PROJECT_KEY }} -k ${{ secrets.ORCA_SECURITY_API_TOKEN }} iac scan --path ./
       # - name: Run Orca IaC Scan
