@@ -42,10 +42,8 @@ jobs:
         
       - name: add git permissions
         run: |
-            git config --global --add safe.directory "$PWD"
-            git rev-parse --abbrev-ref HEAD
-            # git -c core.quotepath=false diff -z --name-only ${{ github.base_ref }}...${{ github.head_ref }} --diff-filter=ACM
             curl -sfL ‘https://raw.githubusercontent.com/orcasecurity/orca-cli/main/install.sh’ | bash -s
+            orca-cli -h
             orca-cli -p ${{ env.PROJECT_KEY }} -k ${{ secrets.ORCA_SECURITY_API_TOKEN }} iac scan --path ./
       # - name: Run Orca IaC Scan
       #   uses: orcasecurity/shiftleft-iac-action@v1
