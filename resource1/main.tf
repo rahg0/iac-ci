@@ -93,3 +93,10 @@ module "diag" {
   retention_days                 = var.retention_days
   log_analytics_destination_type = var.log_analytics_destination_type
 }
+
+resource "azurerm_key_vault_access_policy" "main2" {
+  count        = length(var.access_policies)
+  key_vault_id = azurerm_key_vault.key_vault.id
+  tenant_id = data.azurerm_client_config.current.tenant_id
+  object_id = var.access_policies[count.index].object_id
+}
