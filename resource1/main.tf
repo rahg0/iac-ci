@@ -1,4 +1,4 @@
-#tfsec:ignore:azure-keyvault-specify-network-acl
+#tfsec:ignore:azure-keyvault-specify-network-acl test
 resource "azurerm_key_vault" "key_vault" {
   name                            = var.name
   resource_group_name             = var.resource_group_name
