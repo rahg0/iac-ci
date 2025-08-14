@@ -40,9 +40,11 @@ jobs:
         with:
           ref: ${{ github.base_ref }}  # Target branch of PR
           fetch-depth: 0
+          
         #with:
         #  fetch-depth: 0
         #  ref: ${{ github.event.pull_request.head.ref }}
+
 
       - name: Run Orca IaC Scan
         uses: orcasecurity/shiftleft-iac-action@v1
