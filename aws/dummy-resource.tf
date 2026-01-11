@@ -1,4 +1,4 @@
-resource "aws_iam_role" "lambda-01" {
+resource "aws_iam_role" "lambda-02" {
   name = "${local.resource_prefix.value}-analysis-lambda"
 
 
