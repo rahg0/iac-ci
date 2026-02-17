@@ -1,6 +1,5 @@
 name: Sample Orca IaC Scan Workflow
 on:
-  # Scan for each push event on your protected branch. If you have a different branch configured, please adjust the configuration accordingly by replacing 'main'.
   push:
     branches: [ "main" ]
     paths:
