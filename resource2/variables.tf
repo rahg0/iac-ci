@@ -1,4 +1,4 @@
-variable "name" {
+variable "names" {
   description = "Specifies the name of the Key Vault. Changing this forces a new resource to be created. The name must be globally unqiue. If the vault is in a recoverable state then the vault will need to be purged before reusing the name."
   type        = string
 }
