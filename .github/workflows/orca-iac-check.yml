@@ -8,7 +8,7 @@ on:
       - '**.json'
       - '**.yml'
       - '**.yaml'
-      
+       
   pull_request:
     #branches: [ "main" ]
     paths:
