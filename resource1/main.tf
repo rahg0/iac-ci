@@ -45,7 +45,6 @@ resource "azurerm_key_vault_access_policy" "main" {
   secret_permissions      = var.access_policies[count.index].secret_permissions
   key_permissions         = var.access_policies[count.index].key_permissions
   certificate_permissions = var.access_policies[count.index].certificate_permissions
-  storage_permissions     = var.access_policies[count.index].storage_permissions
 }
 
 resource "azurerm_private_endpoint" "private_endpoint" {
