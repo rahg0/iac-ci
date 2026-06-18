@@ -31,9 +31,6 @@ jobs:
   orca-iac_scan:
     name: Orca IaC Scan
     runs-on: ubuntu-latest
-    env:
-      # PROJECT_KEY: default
-      PROJECT_KEY: ${{ secrets.project_key }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -51,7 +48,7 @@ jobs:
         id: orca_scan
         with:
           api_token: ${{ secrets.ORCA_SECURITY_API_TOKEN }}
-          project_key: ${{ env.PROJECT_KEY }}
+          project_key: rahg0-iac-ci
           path: "./"
           show_annotations: true
           custom_controls: "./.github/workflows/opa_policies/custom_queries"
